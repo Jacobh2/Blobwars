@@ -19,5 +19,6 @@ public class BlobMovement : MonoBehaviour
     private void FixedUpdate()
     {
         blob.MovePosition(blob.position + movement * moveSpeed * Time.fixedDeltaTime);
+        //print($"Position: {blob.position}");
     }
 }
