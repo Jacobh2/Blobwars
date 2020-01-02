@@ -9,6 +9,7 @@ public class Receiver : MonoBehaviour
 {
     public int port = 13000;
     public Rigidbody2D blob;
+    public BlobDirection blobDirection;
 
     TcpListener server;
     TcpClient client;
@@ -39,6 +40,15 @@ public class Receiver : MonoBehaviour
             string[] parts = otherPosition.Split('#');
             x = float.Parse(parts[0]);
             y = float.Parse(parts[1]);
+
+            if (x == 0)
+            {
+                blobDirection.dx = 0;
+            }
+            else
+            {
+                blobDirection.dx = (int)Mathf.Sign(x);
+            }
         }
         ready = false;
     }
@@ -50,4 +60,5 @@ public class Receiver : MonoBehaviour
 
         blob.MovePosition(new Vector2(x, y));
     }
+
 }

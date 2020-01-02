@@ -2,7 +2,7 @@
 
 public class BlobAnimation : MonoBehaviour
 {
-    public BlobMovement blobMovement;
+    public BlobDirection blobDirection;
     private Animator animator;
 
     private void Start()
@@ -12,6 +12,6 @@ public class BlobAnimation : MonoBehaviour
 
     void Update()
     {
-        animator.SetInteger("dx", blobMovement.dx);
+        animator.SetInteger("dx", blobDirection.dx);
     }
 }
