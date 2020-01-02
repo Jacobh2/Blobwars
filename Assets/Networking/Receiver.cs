@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -35,19 +36,27 @@ public class Receiver : MonoBehaviour
         ready = client.Connected;
         while (client.Connected)
         {
-            int bytesRead = stream.Read(blobData, 0, blobData.Length);
-            string otherPosition = Encoding.ASCII.GetString(blobData, 0, bytesRead);
-            string[] parts = otherPosition.Split('#');
-            x = float.Parse(parts[0]);
-            y = float.Parse(parts[1]);
+            try
+            {
 
-            if (x == 0)
-            {
-                blobDirection.dx = 0;
+                int bytesRead = stream.Read(blobData, 0, blobData.Length);
+                string otherPosition = Encoding.ASCII.GetString(blobData, 0, bytesRead);
+                string[] parts = otherPosition.Split('#');
+                x = float.Parse(parts[0]);
+                y = float.Parse(parts[1]);
+
+                if (x == 0)
+                {
+                    blobDirection.dx = 0;
+                }
+                else
+                {
+                    blobDirection.dx = (int)Mathf.Sign(x);
+                }
             }
-            else
+            catch (Exception e)
             {
-                blobDirection.dx = (int)Mathf.Sign(x);
+                print($"Failed during receive: {e}");
             }
         }
         ready = false;
