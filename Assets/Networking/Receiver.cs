@@ -8,10 +8,11 @@ using UnityEngine;
 public class Receiver : MonoBehaviour
 {
     public int port = 13000;
-    TcpListener server;
-    volatile TcpClient client;
-    NetworkStream stream;
     public Rigidbody2D blob;
+
+    TcpListener server;
+    TcpClient client;
+    NetworkStream stream;
     byte[] blobData = new byte[32];
 
     volatile float x;
@@ -39,6 +40,7 @@ public class Receiver : MonoBehaviour
             x = float.Parse(parts[0]);
             y = float.Parse(parts[1]);
         }
+        ready = false;
     }
 
     private void FixedUpdate()
@@ -46,6 +48,6 @@ public class Receiver : MonoBehaviour
         if (!ready)
             return;
 
-        blob.MovePosition(new Vector2(x + 1, y + 1));
+        blob.MovePosition(new Vector2(x, y));
     }
 }

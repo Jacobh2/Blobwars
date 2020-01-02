@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BlobMovement : MonoBehaviour
 {
@@ -19,6 +17,5 @@ public class BlobMovement : MonoBehaviour
     private void FixedUpdate()
     {
         blob.MovePosition(blob.position + movement * moveSpeed * Time.fixedDeltaTime);
-        //print($"Position: {blob.position}");
     }
 }
