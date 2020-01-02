@@ -4,7 +4,7 @@ public class BlobMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D blob;
-    public int dx;
+    public BlobDirection blobDirection;
 
     Vector2 movement;
 
@@ -16,11 +16,11 @@ public class BlobMovement : MonoBehaviour
 
         if (movement.x == 0)
         {
-            dx = 0;
+            blobDirection.dx = 0;
         }
         else
         {
-            dx = (int)Mathf.Sign(movement.x);
+            blobDirection.dx = (int)Mathf.Sign(movement.x);
         }
     }
 
@@ -28,4 +28,5 @@ public class BlobMovement : MonoBehaviour
     {
         blob.MovePosition(blob.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
+
 }
